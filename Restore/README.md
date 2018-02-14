@@ -1,4 +1,4 @@
-<b>Restore Script Instructions</b>
+# Restore Script Instructions
 This script is meant to be run after using the Backup script in this same repository.
 
 1.	Run the script from the user’s profile.
