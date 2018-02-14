@@ -10,8 +10,6 @@
 $BackupPath = Read-Host "Please enter the path to your backup folder"
 $OGPath = Get-Location
 
-#Get-ChildItem -Path $BackupPath
-
 #Test the path provided and prompt again if invalid
 $testPath = Test-Path -path "$BackupPath\Backups\$env:username\"
 while ($testPath -eq $false)
@@ -216,9 +214,6 @@ else
     Write-Host ""
     Write-Host "No valid version of Outlook found!  Skipping profile setup."
 }
-
-#Open Bluezone
-start-process -filepath "http://stifelbluezone.stifel.com"
 
 Write-Host ""
 Write-Host ""
