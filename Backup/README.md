@@ -1,4 +1,4 @@
-<b>Backup Script Instructions</b>
+# Backup Script Instructions
 
 1.	Run the script from the user’s profile.
 
