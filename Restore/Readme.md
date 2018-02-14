@@ -1,4 +1,4 @@
-Restore Script Instructions
+<b>Restore Script Instructions</b>
 
 1.	Run the script from the user’s profile.
 
