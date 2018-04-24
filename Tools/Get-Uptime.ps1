@@ -9,13 +9,7 @@ function Get-Uptime
                     ValueFromPipelineByPropertyName=$true)]
         [Alias('hostname')]
         [Alias('cn')]
-        [string[]]$ComputerName = $env:COMPUTERNAME,
-
-        [Parameter(Position=1,
-                    Mandatory=$false)]
-        [Alias('runas')]
-        [System.Management.Automation.Credential()]$Credential =
-        [System.Management.Automation.PSCredential]::Empty
+        [string[]]$ComputerName = $env:COMPUTERNAME
     )
 
     PROCESS
