@@ -1,5 +1,6 @@
 function Get-MacInfo
 {
+    [alias("mac")]
     [CmdletBinding()]
     param
     (
@@ -8,13 +9,7 @@ function Get-MacInfo
                     ValueFromPipelineByPropertyName=$true)]
         [Alias('hostname')]
         [Alias('cn')]
-        [string[]]$ComputerName = $env:COMPUTERNAME,
-
-        [Parameter(Position=1,
-                    Mandatory=$false)]
-        [Alias('runas')]
-        [System.Management.Automation.Credential()]$Credential =
-        [System.Management.Automation.PSCredential]::Empty
+        [string[]]$ComputerName = $env:COMPUTERNAME
     )
 
     PROCESS
@@ -23,4 +18,6 @@ function Get-MacInfo
         Where-Object {$_.IpAddress.Count -ge 1} |
         Select-Object @{l='ComputerName';e={$_.DNSHostName}},@{l='Description';e={$_.Description}}, @{l='MAC Address';e={$_.MACAddress}} 
     }
+    
+    END{}
 }
