@@ -8,18 +8,13 @@ function Get-User
                     ValueFromPipelineByPropertyName=$true)]
         [Alias('hostname')]
         [Alias('cn')]
-        [string[]]$ComputerName = $env:COMPUTERNAME,
-
-        [Parameter(Position=1,
-                    Mandatory=$false)]
-        [Alias('runas')]
-        [System.Management.Automation.Credential()]$Credential =
-        [System.Management.Automation.PSCredential]::Empty
+        [string[]]$ComputerName = $env:COMPUTERNAME
     )   
 
     PROCESS
     {
-        WMIC /NODE: $ComputerName COMPUTERSYSTEM GET USERNAME
+        $User = (Get-WmiObject -ComputerName $ComputerName Win32_ComputerSystem).Username
+        echo $User
         $Locked = Get-Process -ComputerName $ComputerName -Name *logonui
 
         if ($Locked.ProcessName -eq "logonui")
