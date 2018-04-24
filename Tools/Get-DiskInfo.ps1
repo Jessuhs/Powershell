@@ -1,5 +1,6 @@
 function Get-DiskInfo
 {
+    [alias("disks")]
     [CmdletBinding()]
     param
     (
@@ -8,13 +9,7 @@ function Get-DiskInfo
                     ValueFromPipelineByPropertyName=$true)]
         [Alias('hostname')]
         [Alias('cn')]
-        [string[]]$ComputerName = $env:COMPUTERNAME,
-
-        [Parameter(Position=1,
-                    Mandatory=$false)]
-        [Alias('runas')]
-        [System.Management.Automation.Credential()]$Credential =
-        [System.Management.Automation.PSCredential]::Empty
+        [string[]]$ComputerName = $env:COMPUTERNAME
     )
 
     PROCESS
@@ -22,4 +17,6 @@ function Get-DiskInfo
         $Disks = Get-CimInstance -ComputerName $ComputerName -Class CIM_DiskDrive
         $Disks | Select-Object @{l='Computer Name';e={$_.PSComputerName}},@{l='Model';e={$_.Model}}, @{l='Partitions';e={$_.Partitions}}, @{l='Size(GB)';e={$_.Size / 1GB -as [int]}}
     }
+    
+    END{}
 }
